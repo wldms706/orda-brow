@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const femaleGrid = document.getElementById('female-grid');
     const maleGrid = document.getElementById('male-grid');
+    const lashGrid = document.getElementById('lash-grid');
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -11,13 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add active class to clicked button
             btn.classList.add('active');
 
-            // Show/hide grids based on tab
+            // Hide all grids
+            femaleGrid.classList.add('hidden');
+            maleGrid.classList.add('hidden');
+            lashGrid.classList.add('hidden');
+
+            // Show selected grid
             if (btn.dataset.tab === 'female') {
                 femaleGrid.classList.remove('hidden');
-                maleGrid.classList.add('hidden');
-            } else {
-                femaleGrid.classList.add('hidden');
+            } else if (btn.dataset.tab === 'male') {
                 maleGrid.classList.remove('hidden');
+            } else if (btn.dataset.tab === 'lash') {
+                lashGrid.classList.remove('hidden');
             }
         });
     });
