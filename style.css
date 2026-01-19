@@ -1004,6 +1004,29 @@ ul {
     color: var(--white);
 }
 
+/* Kakao Button */
+.btn-kakao {
+    background-color: #FEE500;
+    color: #191919;
+    font-weight: 600;
+}
+
+.btn-kakao:hover {
+    background-color: #F5DC00;
+    color: #191919;
+    transform: translateY(-2px);
+}
+
+.final-cta .btn-kakao {
+    background-color: #FEE500;
+    color: #191919;
+}
+
+.final-cta .btn-kakao:hover {
+    background-color: #F5DC00;
+    color: #191919;
+}
+
 .cta-notice {
     margin-top: 16px;
     font-size: 13px;
