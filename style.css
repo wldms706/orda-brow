@@ -1563,3 +1563,19 @@ ul {
         width: 100%;
     }
 }
+
+/* ✅ 모바일 한글 줄바꿈(음절 분리) 방지 */
+@media (max-width: 768px){
+  /* 경험 카드 섹션 텍스트가 들어있는 영역에 적용 (필요하면 선택자 더 좁혀도 됨) */
+  .section, .container, .card, .item, .list, .content, .text,
+  .experience, .experience-card, .experience-item {
+    word-break: keep-all;
+    line-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* ✅ flex/grid에서 텍스트가 이상하게 쪼개질 때 방지 */
+  .card *, .item * {
+    min-width: 0;
+  }
+}
