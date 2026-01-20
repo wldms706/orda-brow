@@ -1579,3 +1579,50 @@ ul {
     min-width: 0;
   }
 }
+
+/* ===== 리터치 하이라이트 스타일 ===== */
+.retouch-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.retouch-highlight-item {
+    background: linear-gradient(135deg, rgba(200, 164, 106, 0.15) 0%, rgba(200, 164, 106, 0.08) 100%);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.highlight-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.highlight-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.highlight-note {
+    font-size: 13px;
+    color: var(--subtext);
+}
+
+@media (max-width: 768px) {
+    .retouch-highlight-item {
+        padding: 14px 16px;
+    }
+
+    .highlight-value {
+        font-size: 16px;
+    }
+}
