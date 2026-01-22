@@ -1,4 +1,67 @@
+// ============================================
+// Google Sheets Tracker
+// ============================================
+const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzuKTyoMP5dQzgB1T9NsbpcKMYn_zvoXLUcbNTH7e0jaJwGV9XQJ0weBoUzQMhI3M42/exec';
+
+function getUTMParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        source: params.get('utm_source') || '',
+        medium: params.get('utm_medium') || '',
+        campaign: params.get('utm_campaign') || ''
+    };
+}
+
+function getReferrer() {
+    const ref = document.referrer;
+    if (!ref) return '직접 방문';
+    if (ref.includes('instagram')) return 'Instagram';
+    if (ref.includes('facebook')) return 'Facebook';
+    if (ref.includes('naver')) return 'Naver';
+    if (ref.includes('google')) return 'Google';
+    if (ref.includes('kakao')) return 'Kakao';
+    return ref;
+}
+
+function getDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+}
+
+function getKSTTimestamp() {
+    const now = new Date();
+    const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+    return kst.toISOString().replace('T', ' ').substring(0, 19);
+}
+
+function trackEvent(action) {
+    const utm = getUTMParams();
+    const data = {
+        timestamp: getKSTTimestamp(),
+        referrer: getReferrer(),
+        utm_source: utm.source,
+        utm_medium: utm.medium,
+        utm_campaign: utm.campaign,
+        page: window.location.pathname,
+        action: action,
+        device: getDevice()
+    };
+
+    fetch(TRACKER_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).catch(() => {});
+}
+
+// 페이지 방문 추적
+document.addEventListener('DOMContentLoaded', function() {
+    trackEvent('페이지 방문');
+});
+
+// ============================================
 // Portfolio Tab Switching
+// ============================================
 document.addEventListener('DOMContentLoaded', function() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const femaleGrid = document.getElementById('female-grid');
@@ -20,12 +83,29 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show selected grid
             if (btn.dataset.tab === 'female') {
                 femaleGrid.classList.remove('hidden');
+                trackEvent('탭 전환: 여성');
             } else if (btn.dataset.tab === 'male') {
                 maleGrid.classList.remove('hidden');
+                trackEvent('탭 전환: 남성');
             } else if (btn.dataset.tab === 'lash') {
                 lashGrid.classList.remove('hidden');
+                trackEvent('탭 전환: 속눈썹펌');
             }
         });
+    });
+
+    // CTA 버튼 클릭 추적
+    document.querySelectorAll('.btn-kakao').forEach(btn => {
+        btn.addEventListener('click', () => trackEvent('클릭: 카카오톡 상담'));
+    });
+    document.querySelectorAll('.btn-naver-place').forEach(btn => {
+        btn.addEventListener('click', () => trackEvent('클릭: 네이버 플레이스'));
+    });
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('click', () => trackEvent('클릭: 1:1 상담 예약'));
+    });
+    document.querySelectorAll('.btn-secondary').forEach(btn => {
+        btn.addEventListener('click', () => trackEvent('클릭: 시뮬레이션 상담'));
     });
 });
 
