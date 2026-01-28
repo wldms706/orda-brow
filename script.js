@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 // Consultation Form Submission
 // ============================================
-const CONSULTATION_FORM_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const CONSULTATION_FORM_URL = 'https://script.google.com/macros/s/AKfycbyC5iYoJvN7ShcHce5xOlJdqIwr6PbTWWCW95PugFEQsAku5cnBPCNn2IjGCB0DXLKo/exec';
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('consultation-form');
