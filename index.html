@@ -54,7 +54,7 @@
                 <a href="#location" class="nav-link">오시는 길</a>
             </nav>
 
-            <a href="#contact" class="header-cta">문의하기</a>
+            <a href="#consultation" class="header-cta">문의하기</a>
 
             <!-- Mobile Hamburger -->
             <button class="hamburger" aria-label="메뉴 열기">
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <a href="#location" class="nav-link">오시는 길</a>
-            <a href="#contact" class="nav-mobile-cta">문의하기</a>
+            <a href="#consultation" class="nav-mobile-cta">문의하기</a>
         </nav>
     </header>
 
@@ -97,7 +97,7 @@
             <p class="hero-location">낙성대 오르다브로우</p>
             <p class="hero-tagline">과하지 않게, 흐리지 않게, 딱 필요한 만큼만</p>
             <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">1:1 상담 예약하기</a>
+                <a href="#consultation" class="btn btn-primary">1:1 상담 예약하기</a>
                 <a href="#simulation" class="text-link">작업 전 디자인 시뮬레이션이 궁금해요 →</a>
             </div>
         </div>
@@ -435,7 +435,7 @@
                         <li>과한 눈썹/어색한 인상/실패 확률이 <strong>낮아집니다.</strong></li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn btn-secondary">시뮬레이션 상담받기</a>
+                <a href="#consultation" class="btn btn-secondary">시뮬레이션 상담받기</a>
             </div>
         </div>
     </section>
@@ -559,6 +559,52 @@
                         <p>그래서 <strong>작업 전에 시뮬레이션으로 먼저 확인</strong>합니다. 디자인 합의 후 진행하기 때문에 "생각과 다른 결과"를 최대한 줄입니다.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Form Section -->
+    <section class="consultation" id="consultation">
+        <div class="container">
+            <h2 class="section-title">무료 상담 신청</h2>
+            <p class="consultation-desc">궁금한 점이 있으시면 아래 폼을 작성해 주세요.<br>빠르게 연락드리겠습니다.</p>
+
+            <!-- 폼 화면 -->
+            <div id="consultation-form-wrap">
+                <form id="consultation-form" novalidate>
+                    <div class="form-group">
+                        <label for="form-name">이름 <span class="required">*</span></label>
+                        <input type="text" id="form-name" name="name" placeholder="이름을 입력해 주세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-phone">연락처 <span class="required">*</span></label>
+                        <input type="tel" id="form-phone" name="phone" placeholder="010-0000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-service">관심 시술 <span class="required">*</span></label>
+                        <select id="form-service" name="service" required>
+                            <option value="" disabled selected>시술을 선택해 주세요</option>
+                            <option value="눈썹 반영구">눈썹 반영구</option>
+                            <option value="속눈썹펌">속눈썹펌</option>
+                            <option value="입술 반영구">입술 반영구</option>
+                            <option value="리터치">리터치</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message">문의 내용</label>
+                        <textarea id="form-message" name="message" rows="3" placeholder="궁금한 점을 자유롭게 적어 주세요"></textarea>
+                    </div>
+                    <p class="form-privacy">입력하신 정보는 상담 목적으로만 사용되며, 상담 완료 후 파기됩니다.</p>
+                    <button type="submit" class="btn btn-primary btn-submit">상담 신청하기</button>
+                </form>
+            </div>
+
+            <!-- 완료 화면 -->
+            <div id="consultation-done" class="consultation-done" style="display:none;">
+                <div class="done-icon">✓</div>
+                <h3 class="done-title">상담 신청이 완료되었습니다</h3>
+                <p class="done-desc">빠른 시일 내에 연락드리겠습니다.<br>감사합니다.</p>
             </div>
         </div>
     </section>

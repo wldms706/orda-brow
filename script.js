@@ -60,6 +60,65 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
+// Consultation Form Submission
+// ============================================
+const CONSULTATION_FORM_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('consultation-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nameEl = document.getElementById('form-name');
+        const phoneEl = document.getElementById('form-phone');
+        const serviceEl = document.getElementById('form-service');
+        const messageEl = document.getElementById('form-message');
+
+        // Clear previous errors
+        [nameEl, phoneEl, serviceEl].forEach(el => el.classList.remove('error'));
+
+        // Validate
+        let hasError = false;
+        if (!nameEl.value.trim()) { nameEl.classList.add('error'); hasError = true; }
+        if (!phoneEl.value.trim()) { phoneEl.classList.add('error'); hasError = true; }
+        if (!serviceEl.value) { serviceEl.classList.add('error'); hasError = true; }
+        if (hasError) return;
+
+        // Immediately show done screen (don't wait for response)
+        document.getElementById('consultation-form-wrap').style.display = 'none';
+        document.getElementById('consultation-done').style.display = 'block';
+
+        // Fire Meta Pixel Lead event
+        if (typeof fbq === 'function') {
+            fbq('track', 'Lead');
+        }
+
+        // Track event
+        trackEvent('상담 신청 완료');
+
+        // Send data to Google Sheets (fire-and-forget)
+        const payload = {
+            timestamp: getKSTTimestamp(),
+            name: nameEl.value.trim(),
+            phone: phoneEl.value.trim(),
+            service: serviceEl.value,
+            message: messageEl.value.trim(),
+            referrer: getReferrer(),
+            device: getDevice()
+        };
+
+        fetch(CONSULTATION_FORM_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(() => {});
+    });
+});
+
+// ============================================
 // Portfolio Tab Switching
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
