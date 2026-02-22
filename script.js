@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const nameEl = document.getElementById('form-name');
         const phoneEl = document.getElementById('form-phone');
         const serviceEl = document.getElementById('form-service');
-        const messageEl = document.getElementById('form-message');
-
         // Clear previous errors
         [nameEl, phoneEl, serviceEl].forEach(el => el.classList.remove('error'));
 
@@ -104,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             name: nameEl.value.trim(),
             phone: phoneEl.value.trim(),
             service: serviceEl.value,
-            message: messageEl.value.trim(),
             referrer: getReferrer(),
             device: getDevice()
         };
